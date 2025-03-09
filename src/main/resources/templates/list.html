@@ -15,9 +15,34 @@
         <img src="https://placehold.co/300" alt="">
         <div>
             <h4 th:text="${i.title}">바지</h4>
-            <a th:href="@{ '/detail/' + ${i.id}}">링크</a>
+            <a th:href="@{ '/detail/' + ${i.id}}">상세 페이지</a>
             <p th:text="${i.price + '원'}">54,000원</p>
+            <a th:href="@{ '/modify/' + ${i.id}}">📝</a>
+            <span th:onclick="fetch('/delete?id=[[${i.id}]]', {method : 'DELETE'})
+                .then( r => r.text())
+                .then((a) => {
+                    console.log(a)
+                    location.reload();
+                })
+            ">삭제</span>
+<!--            <button class="deleteBtn">삭제</button>-->
         </div>
     </div>
+
+
+    <script>
+        document.querySelectorAll('.deleteBtn')[0].addEventListener('click', function(){
+        console.log("삭제");
+            fetch('/test2?name=kim&age=20');
+<!--            fetch('/test1', {-->
+<!--                method : 'POST',-->
+<!--                headers : { 'Content-Type' : 'application/json' },-->
+<!--                body : JSON.stringify( { name : 'kim' })-->
+<!--            });-->
+        });
+
+    </script>
+
+
 </body>
 </html>

@@ -1,4 +1,4 @@
-package com.apple.shop;
+package com.apple.shop.assignment;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

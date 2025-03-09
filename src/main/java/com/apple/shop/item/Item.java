@@ -1,11 +1,15 @@
-package com.apple.shop;
+package com.apple.shop.item;
+
 import jakarta.persistence.*;
+import lombok.Setter;
 import lombok.ToString;
+
 @Entity
 @ToString
-public class Content {
+@Setter
+public class Item {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
-    public String content;
-    public String date;
+    public String title;
+    public Integer price;
 }
