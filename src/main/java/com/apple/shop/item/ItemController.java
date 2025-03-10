@@ -1,11 +1,13 @@
 package com.apple.shop.item;
+import com.apple.shop.member.Member;
+import com.apple.shop.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -13,6 +15,7 @@ import java.util.Optional;
 public class ItemController {
     private final ItemRepository itemRepository;
     private final ItemService itemService;
+    private final MemberRepository memberRepository;
 
     @GetMapping("/list")
     String list(Model model){
@@ -73,20 +76,24 @@ public class ItemController {
         return "redirect:/list";
     }
 
-    @PostMapping("/test1")
-    String test1(@RequestBody Map<String, Object> body){
-        System.out.println(body.get("name"));
-        return "redirect:/list";
-    }
-    @GetMapping("/test2")
-    String test2(@RequestParam String name) {
-        System.out.println(name);
-        return "redirect:/list";
-    }
+//    @PostMapping("/test1")
+//    String test1(@RequestBody Map<String, Object> body){
+//        System.out.println(body.get("name"));
+//        return "redirect:/list";
+//    }
+//
+//    @GetMapping("/test2")
+//    String test2(@RequestParam String name) {
+//        System.out.println(name);
+//        return "redirect:/list";
+//    }
+
     @DeleteMapping("/delete")
     ResponseEntity<String> delete(@RequestParam Long id) {
         itemRepository.deleteById(id);
         return ResponseEntity.status(200).body("삭제완료");
     }
+
+
 
 }
